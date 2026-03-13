@@ -20,5 +20,71 @@
     "source": "https://example.com/report-2",
     "lat": 36.20,
     "lng": 37.16
+  },
+  {
+    "title": "Regional security incident",
+    "date": "2026-03-08",
+    "country": "Lebanon",
+    "region": "South Lebanon",
+    "type": "Security",
+    "summary": "Public reports described a security-related incident in the area.",
+    "source": "https://example.com/report-3",
+    "lat": 33.27,
+    "lng": 35.20
+  },
+  {
+    "title": "Border-area report",
+    "date": "2026-03-07",
+    "country": "Jordan",
+    "region": "Northern Jordan",
+    "type": "Border activity",
+    "summary": "Open-source reporting described activity in the broader border region.",
+    "source": "https://example.com/report-4",
+    "lat": 32.55,
+    "lng": 36.01
+  },
+  {
+    "title": "Infrastructure disruption",
+    "date": "2026-03-06",
+    "country": "Israel",
+    "region": "Northern district",
+    "type": "Infrastructure",
+    "summary": "Delayed public reporting described disruption affecting local infrastructure.",
+    "source": "https://example.com/report-5",
+    "lat": 32.79,
+    "lng": 35.53
+  },
+  {
+    "title": "Area incident report",
+    "date": "2026-03-05",
+    "country": "Saudi Arabia",
+    "region": "Northwestern area",
+    "type": "Security",
+    "summary": "A publicly reported regional incident with approximate location only.",
+    "source": "https://example.com/report-6",
+    "lat": 28.39,
+    "lng": 36.57
+  },
+  {
+    "title": "Urban-area impact report",
+    "date": "2026-03-04",
+    "country": "Yemen",
+    "region": "Sanaa area",
+    "type": "Infrastructure",
+    "summary": "Public reporting described impacts in the wider urban area.",
+    "source": "https://example.com/report-7",
+    "lat": 15.37,
+    "lng": 44.19
+  },
+  {
+    "title": "Airspace-related report",
+    "date": "2026-03-03",
+    "country": "Iran",
+    "region": "Western region",
+    "type": "Air activity",
+    "summary": "Open-source reports described airspace-related activity in the broader region.",
+    "source": "https://example.com/report-8",
+    "lat": 34.31,
+    "lng": 47.07
   }
 ]
