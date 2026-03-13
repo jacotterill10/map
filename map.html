@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Conflict Incident Map</title>
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Conflict Incident Map</h1>
+    <p>Public reports only. Delayed publication. Approximate locations.</p>
+  </header>
+
+  <section class="controls">
+    <label for="typeFilter">Filter by type:</label>
+    <select id="typeFilter">
+      <option value="all">All</option>
+    </select>
+  </section>
+
+  <div id="map"></div>
+
+  <section class="incident-list">
+    <h2>Incidents</h2>
+    <div id="incidentContainer"></div>
+  </section>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    const map = L.map("map").setView([33.5, 44.0], 5);
+
+    L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; Stadia Maps & OpenMapTiles'
+    }).addTo(map);
+
+    const incidentContainer = document.getElementById("incidentContainer");
+    const typeFilter = document.getElementById("typeFilter");
+
+    let allIncidents = [];
+    let markers = [];
+
+    function clearMarkers() {
+      markers.forEach(marker => map.removeLayer(marker));
+      markers = [];
+    }
+
+    function renderIncidents(incidents) {
+      clearMarkers();
+      incidentContainer.innerHTML = "";
+
+      incidents.forEach(incident => {
+        const marker = L.marker([incident.lat, incident.lng]).addTo(map);
+
+        marker.bindPopup(`
+          <strong>${incident.title}</strong><br>
+          <b>Date:</b> ${incident.date}<br>
+          <b>Country:</b> ${incident.country}<br>
+          <b>Region:</b> ${incident.region}<br>
+          <b>Type:</b> ${incident.type}<br>
+          <b>Summary:</b> ${incident.summary}<br>
+          <a href="${incident.source}" target="_blank" rel="noopener noreferrer">Source</a>
+        `);
+
+        markers.push(marker);
+
+        const card = document.createElement("div");
+        card.className = "incident-card";
+        card.innerHTML = `
+          <h3>${incident.title}</h3>
+          <p><strong>Date:</strong> ${incident.date}</p>
+          <p><strong>Country:</strong> ${incident.country}</p>
+          <p><strong>Region:</strong> ${incident.region}</p>
+          <p><strong>Type:</strong> ${incident.type}</p>
+          <p>${incident.summary}</p>
+          <p><a href="${incident.source}" target="_blank" rel="noopener noreferrer">View source</a></p>
+        `;
+        incidentContainer.appendChild(card);
+      });
+    }
+
+    function populateFilter(incidents) {
+      const types = [...new Set(incidents.map(i => i.type))];
+      types.forEach(type => {
+        const option = document.createElement("option");
+        option.value = type;
+        option.textContent = type;
+        typeFilter.appendChild(option);
+      });
+    }
+
+    function applyFilter() {
+      const value = typeFilter.value;
+      const filtered = value === "all"
+        ? allIncidents
+        : allIncidents.filter(i => i.type === value);
+      renderIncidents(filtered);
+    }
+
+    fetch("incidents.json")
+      .then(response => response.json())
+      .then(data => {
+        allIncidents = data;
+        populateFilter(allIncidents);
+        renderIncidents(allIncidents);
+      })
+      .catch(error => {
+        incidentContainer.innerHTML = "<p>Could not load incidents.</p>";
+        console.error(error);
+      });
+
+    typeFilter.addEventListener("change", applyFilter);
+  </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+[
+  {
+    "title": "Reported air incident",
+    "date": "2026-03-10",
+    "country": "Iraq",
+    "region": "Near Mosul",
+    "type": "Air activity",
+    "summary": "Public reporting described an incident in the broader area. Coordinates are approximate and publication is delayed.",
+    "source": "https://example.com/report-1",
+    "lat": 36.34,
+    "lng": 43.13
+  },
+  {
+    "title": "Infrastructure impact report",
+    "date": "2026-03-09",
+    "country": "Syria",
+    "region": "Aleppo area",
+    "type": "Infrastructure",
+    "summary": "A delayed report described infrastructure damage in the region.",
+    "source": "https://example.com/report-2",
+    "lat": 36.20,
+    "lng": 37.16
+  }
+]
