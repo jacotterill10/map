@@ -3,117 +3,87 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Conflict Incident Map</title>
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-  />
+  <title>Incident Dashboard</title>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
   <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-  <header>
-    <h1>Conflict Incident Map</h1>
-    <p>Public reports only. Delayed publication. Approximate locations.</p>
-  </header>
-
-  <section class="controls">
-    <label for="typeFilter">Filter by type:</label>
-    <select id="typeFilter">
-      <option value="all">All</option>
-    </select>
-  </section>
-
   <div id="map"></div>
 
-  <section class="incident-list">
-    <h2>Incidents</h2>
-    <div id="incidentContainer"></div>
+  <header class="topbar">
+    <div class="brand-block">
+      <div class="eyebrow">Interactive Monitor</div>
+      <h1>Regional Incident Dashboard</h1>
+      <p>Map, incident feed, filters, and daily activity</p>
+    </div>
+
+    <div class="top-stats">
+      <div class="top-stat">
+        <span>Total</span>
+        <strong id="totalIncidents">0</strong>
+      </div>
+      <div class="top-stat">
+        <span>Countries</span>
+        <strong id="countryCount">0</strong>
+      </div>
+      <div class="top-stat">
+        <span>Types</span>
+        <strong id="typeCount">0</strong>
+      </div>
+    </div>
+  </header>
+
+  <section class="left-panel">
+    <div class="panel-card">
+      <h2>Filters</h2>
+
+      <input id="search" placeholder="Search incidents" />
+
+      <select id="countryFilter">
+        <option value="all">All countries</option>
+      </select>
+
+      <select id="typeFilter">
+        <option value="all">All types</option>
+      </select>
+    </div>
+
+    <div class="panel-card incident-feed-card">
+      <div class="panel-head">
+        <h2>Latest Incidents</h2>
+        <span id="resultCount">0</span>
+      </div>
+      <div id="incidentList" class="incident-list"></div>
+    </div>
+  </section>
+
+  <section class="right-panel">
+    <div class="panel-card chart-card">
+      <div class="panel-head">
+        <h2>Daily Activity</h2>
+      </div>
+      <canvas id="timelineChart"></canvas>
+    </div>
+
+    <div class="panel-card legend-card">
+      <div class="panel-head">
+        <h2>Legend</h2>
+      </div>
+      <div class="legend-items">
+        <div class="legend-item"><span class="dot drone"></span> Drone</div>
+        <div class="legend-item"><span class="dot missile"></span> Missile</div>
+        <div class="legend-item"><span class="dot air"></span> Air activity</div>
+        <div class="legend-item"><span class="dot default"></span> Other</div>
+      </div>
+    </div>
   </section>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script>
-    const map = L.map("map").setView([33.5, 44.0], 5);
-
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; OpenStreetMap & CartoDB'
-    }).addTo(map);
-    
-    const incidentContainer = document.getElementById("incidentContainer");
-    const typeFilter = document.getElementById("typeFilter");
-
-    let allIncidents = [];
-    let markers = [];
-
-    function clearMarkers() {
-      markers.forEach(marker => map.removeLayer(marker));
-      markers = [];
-    }
-
-    function renderIncidents(incidents) {
-      clearMarkers();
-      incidentContainer.innerHTML = "";
-
-      incidents.forEach(incident => {
-        const marker = L.marker([incident.lat, incident.lng]).addTo(map);
-
-        marker.bindPopup(`
-          <strong>${incident.title}</strong><br>
-          <b>Date:</b> ${incident.date}<br>
-          <b>Country:</b> ${incident.country}<br>
-          <b>Region:</b> ${incident.region}<br>
-          <b>Type:</b> ${incident.type}<br>
-          <b>Summary:</b> ${incident.summary}<br>
-          <a href="${incident.source}" target="_blank" rel="noopener noreferrer">Source</a>
-        `);
-
-        markers.push(marker);
-
-        const card = document.createElement("div");
-        card.className = "incident-card";
-        card.innerHTML = `
-          <h3>${incident.title}</h3>
-          <p><strong>Date:</strong> ${incident.date}</p>
-          <p><strong>Country:</strong> ${incident.country}</p>
-          <p><strong>Region:</strong> ${incident.region}</p>
-          <p><strong>Type:</strong> ${incident.type}</p>
-          <p>${incident.summary}</p>
-          <p><a href="${incident.source}" target="_blank" rel="noopener noreferrer">View source</a></p>
-        `;
-        incidentContainer.appendChild(card);
-      });
-    }
-
-    function populateFilter(incidents) {
-      const types = [...new Set(incidents.map(i => i.type))];
-      types.forEach(type => {
-        const option = document.createElement("option");
-        option.value = type;
-        option.textContent = type;
-        typeFilter.appendChild(option);
-      });
-    }
-
-    function applyFilter() {
-      const value = typeFilter.value;
-      const filtered = value === "all"
-        ? allIncidents
-        : allIncidents.filter(i => i.type === value);
-      renderIncidents(filtered);
-    }
-
-    fetch("incidents.json")
-      .then(response => response.json())
-      .then(data => {
-        allIncidents = data;
-        populateFilter(allIncidents);
-        renderIncidents(allIncidents);
-      })
-      .catch(error => {
-        incidentContainer.innerHTML = "<p>Could not load incidents.</p>";
-        console.error(error);
-      });
-
-    typeFilter.addEventListener("change", applyFilter);
-  </script>
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+  <script src="dashboard.js"></script>
 </body>
 </html>
