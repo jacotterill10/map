@@ -1,90 +1,137 @@
 [
-  {
-    "title": "Reported air incident",
-    "date": "2026-03-10",
-    "country": "Iraq",
-    "region": "Near Mosul",
-    "type": "Air activity",
-    "summary": "Public reporting described an incident in the broader area. Coordinates are approximate and publication is delayed.",
-    "source": "https://example.com/report-1",
-    "lat": 36.34,
-    "lng": 43.13
-  },
-  {
-    "title": "Infrastructure impact report",
-    "date": "2026-03-09",
-    "country": "Syria",
-    "region": "Aleppo area",
-    "type": "Infrastructure",
-    "summary": "A delayed report described infrastructure damage in the region.",
-    "source": "https://example.com/report-2",
-    "lat": 36.20,
-    "lng": 37.16
-  },
-  {
-    "title": "Regional security incident",
-    "date": "2026-03-08",
-    "country": "Lebanon",
-    "region": "South Lebanon",
-    "type": "Security",
-    "summary": "Public reports described a security-related incident in the area.",
-    "source": "https://example.com/report-3",
-    "lat": 33.27,
-    "lng": 35.20
-  },
-  {
-    "title": "Border-area report",
-    "date": "2026-03-07",
-    "country": "Jordan",
-    "region": "Northern Jordan",
-    "type": "Border activity",
-    "summary": "Open-source reporting described activity in the broader border region.",
-    "source": "https://example.com/report-4",
-    "lat": 32.55,
-    "lng": 36.01
-  },
-  {
-    "title": "Infrastructure disruption",
-    "date": "2026-03-06",
-    "country": "Israel",
-    "region": "Northern district",
-    "type": "Infrastructure",
-    "summary": "Delayed public reporting described disruption affecting local infrastructure.",
-    "source": "https://example.com/report-5",
-    "lat": 32.79,
-    "lng": 35.53
-  },
-  {
-    "title": "Area incident report",
-    "date": "2026-03-05",
-    "country": "Saudi Arabia",
-    "region": "Northwestern area",
-    "type": "Security",
-    "summary": "A publicly reported regional incident with approximate location only.",
-    "source": "https://example.com/report-6",
-    "lat": 28.39,
-    "lng": 36.57
-  },
-  {
-    "title": "Urban-area impact report",
-    "date": "2026-03-04",
-    "country": "Yemen",
-    "region": "Sanaa area",
-    "type": "Infrastructure",
-    "summary": "Public reporting described impacts in the wider urban area.",
-    "source": "https://example.com/report-7",
-    "lat": 15.37,
-    "lng": 44.19
-  },
-  {
-    "title": "Airspace-related report",
-    "date": "2026-03-03",
-    "country": "Iran",
-    "region": "Western region",
-    "type": "Air activity",
-    "summary": "Open-source reports described airspace-related activity in the broader region.",
-    "source": "https://example.com/report-8",
-    "lat": 34.31,
-    "lng": 47.07
-  }
-]
+    {
+      "title": "Drone activity reported near Beirut coast",
+      "date": "2026-03-12",
+      "country": "Lebanon",
+      "region": "Beirut",
+      "type": "Drone strike",
+      "summary": "Drone strike targeted a vehicle during escalation between Israel and Hezbollah.",
+      "source": "https://www.reuters.com/",
+      "lat": 33.8938,
+      "lng": 35.5018
+    },
+    {
+      "title": "Airstrike reported in southern Lebanon",
+      "date": "2026-03-11",
+      "country": "Lebanon",
+      "region": "Tyre district",
+      "type": "Airstrike",
+      "summary": "Israeli aircraft struck suspected militant infrastructure in southern Lebanon.",
+      "source": "https://www.reuters.com/",
+      "lat": 33.2704,
+      "lng": 35.2038
+    },
+    {
+      "title": "Missile impacts reported in central Israel",
+      "date": "2026-03-11",
+      "country": "Israel",
+      "region": "Tel Aviv area",
+      "type": "Missile strike",
+      "summary": "Missiles launched during regional escalation impacted central Israel.",
+      "source": "https://www.reuters.com/",
+      "lat": 32.0853,
+      "lng": 34.7818
+    },
+    {
+      "title": "Rocket fire detected near northern Israel",
+      "date": "2026-03-10",
+      "country": "Israel",
+      "region": "Upper Galilee",
+      "type": "Rocket attack",
+      "summary": "Rocket launches from southern Lebanon triggered sirens across northern Israel.",
+      "source": "https://www.reuters.com/",
+      "lat": 33.0667,
+      "lng": 35.2000
+    },
+    {
+      "title": "Drone strike on RAF Akrotiri base",
+      "date": "2026-03-01",
+      "country": "Cyprus",
+      "region": "RAF Akrotiri",
+      "type": "Drone strike",
+      "summary": "Drone launched from Lebanon struck the RAF Akrotiri military base.",
+      "source": "https://en.wikipedia.org/wiki/2026_drone_strikes_on_Akrotiri_and_Dhekelia",
+      "lat": 34.5904,
+      "lng": 32.9879
+    },
+  
+    {
+      "title": "Missile interception over Bahrain",
+      "date": "2026-03-10",
+      "country": "Bahrain",
+      "region": "Manama",
+      "type": "Missile defense",
+      "summary": "Air defense systems intercepted missiles during regional escalation.",
+      "source": "https://www.reuters.com/",
+      "lat": 26.2235,
+      "lng": 50.5876
+    },
+  
+    {
+      "title": "Drone strike near Duqm port",
+      "date": "2026-03-01",
+      "country": "Oman",
+      "region": "Duqm",
+      "type": "Drone strike",
+      "summary": "Two drones struck infrastructure near the port of Duqm.",
+      "source": "https://en.wikipedia.org/wiki/2026_Iranian_strikes_on_Oman",
+      "lat": 19.6637,
+      "lng": 57.7026
+    },
+  
+    {
+      "title": "Security alert in Dubai airspace",
+      "date": "2026-03-09",
+      "country": "UAE",
+      "region": "Dubai",
+      "type": "Security alert",
+      "summary": "Temporary airspace restrictions were introduced during heightened regional security alerts.",
+      "source": "https://www.thenationalnews.com/",
+      "lat": 25.2048,
+      "lng": 55.2708
+    },
+    {
+      "title": "Maritime security patrol near Strait of Hormuz",
+      "date": "2026-03-08",
+      "country": "UAE",
+      "region": "Gulf shipping corridor",
+      "type": "Military patrol",
+      "summary": "Naval patrols increased monitoring of shipping lanes amid regional tensions.",
+      "source": "https://www.thenationalnews.com/",
+      "lat": 25.6500,
+      "lng": 56.2500
+    },
+    {
+      "title": "Infrastructure security exercise in Abu Dhabi",
+      "date": "2026-03-05",
+      "country": "UAE",
+      "region": "Abu Dhabi",
+      "type": "Security exercise",
+      "summary": "Authorities conducted emergency response drills protecting critical energy infrastructure.",
+      "source": "https://www.thenationalnews.com/",
+      "lat": 24.4539,
+      "lng": 54.3773
+    },
+    {
+      "title": "Cybersecurity alert issued for Gulf infrastructure",
+      "date": "2026-03-04",
+      "country": "UAE",
+      "region": "Abu Dhabi",
+      "type": "Cyber incident",
+      "summary": "Authorities warned of attempted cyber intrusions targeting energy networks.",
+      "source": "https://www.thenationalnews.com/",
+      "lat": 24.4539,
+      "lng": 54.3773
+    },
+    {
+      "title": "Security drill at Sharjah port",
+      "date": "2026-03-03",
+      "country": "UAE",
+      "region": "Sharjah",
+      "type": "Security exercise",
+      "summary": "Emergency response and port security drills were conducted by local authorities.",
+      "source": "https://www.gulftoday.ae/",
+      "lat": 25.3463,
+      "lng": 55.4209
+    }
+  ]
