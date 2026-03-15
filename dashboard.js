@@ -20,6 +20,8 @@ fetch("incidents.json")
     incidents = data;
     populateFilters();
     applyFilters();
+
+    loadFeed()
   })
   .catch(err => {
     console.error("Failed to load incidents:", err);
@@ -233,6 +235,56 @@ function applyFilters(){
   renderList(filtered);
   updateStats(filtered);
   buildChart(filtered);
+
+}
+
+async function loadFeed() {
+
+  try {
+
+    const res = await fetch("feed.json?v=" + Date.now())
+    const data = await res.json()
+
+    const container = document.getElementById("feedList")
+
+    if (!container) return
+
+    container.innerHTML = ""
+
+    data.slice(0,10).forEach(item => {
+
+      const div = document.createElement("div")
+      div.className = "incident"
+
+      div.innerHTML = `
+        <div class="incident-top">
+          <strong>${item.title}</strong>
+        </div>
+
+        <div class="incident-meta">
+          ${new Date(item.date).toLocaleString()}
+        </div>
+
+        <div class="incident-summary">
+          ${item.summary}
+        </div>
+
+        <div class="incident-actions">
+          <a class="source-btn" href="${item.source}" target="_blank">
+            View Source
+          </a>
+        </div>
+      `
+
+      container.appendChild(div)
+
+    })
+
+  } catch(err) {
+
+    console.error("Feed load failed:", err)
+
+  }
 
 }
 
