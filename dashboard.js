@@ -256,13 +256,16 @@ async function loadFeed() {
       const div = document.createElement("div")
       div.className = "incident"
 
+      
+      
+      
       div.innerHTML = `
         <div class="incident-top">
           <strong>${item.title}</strong>
         </div>
 
         <div class="incident-meta">
-          ${new Date(item.date).toLocaleString()}
+          ${new Date(item.date).toLocaleString()} · ${item.sourceName || "Source"}
         </div>
 
         <div class="incident-summary">
@@ -270,13 +273,17 @@ async function loadFeed() {
         </div>
 
         <div class="incident-actions">
-          <a class="source-btn" href="${item.source}" target="_blank">
+          <a class="source-btn" href="${item.source}" target="_blank" rel="noopener noreferrer">
             View Source
           </a>
         </div>
-      `
+      `;
+      
+      
 
       container.appendChild(div)
+
+      
 
     })
 
